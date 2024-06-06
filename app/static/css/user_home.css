@@ -1,0 +1,43 @@
+
+.icon-flipped {
+    -o-transform: scaleX(-1);
+    -moz-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+.background{
+    color:aqua;
+}
+
+.dimensions{
+    width: fill;
+    height: 310px;
+}
+
+.dimension{
+    width:fill;
+    height: 650px;
+}
+
+.dimension2{
+    width:fill;
+    height: 550px;
+}
+
+fieldset {
+    border: 0;
+    background: #222;
+    width: 5em;
+    border-radius: 1px;
+    padding: 1em 1.5em 0.9em;
+    margin: 1em auto;
+  }
+
+
+
+.align {
+    display: flex;
+    align-items: center;
+}

@@ -1,0 +1,148 @@
+{% extends "base.html" %} {%block content%}
+<div class="container-fluid">
+  <div class="row flex-nowrap">
+      <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+          <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+            <img src="../static/images/profile.jfif" alt="profile-picture" width="120" height="120" class="rounded-circle">
+              <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                  <span class="fs-5 d-none d-sm-inline"><h3>Welcome!</h3></span>
+              </a>
+              
+              <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                <li class="nav-item">
+                  <a href="operator_home" class="nav-link align-middle px-0">
+                    <span class="ms-1 d-none d-sm-inline">Home</span>
+                  </a>
+              </li>  
+                <li class="nav-item">
+                      <a href="#" class="nav-link align-middle px-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <span class="ms-1 d-none d-sm-inline">Update Location</span>
+                      </a>
+                      <!-- <button class="btn btn-danger" type="button" id="Button" >End</button> -->
+                  </li>
+                  <li>
+                      <a href="#" class="nav-link px-0 align-middle" data-bs-toggle="modal" data-bs-target="#statusModal">
+                        <span class="ms-1 d-none d-sm-inline">Update Bike Status</span> </a>
+                  </li>
+                  <li>
+                      <a href="operator_login"  class="nav-link px-0 align-middle ">
+                        <span class="ms-1 d-none d-sm-inline">Sign out</span></a>
+                  </li>
+          </div>
+      </div>
+      <div class="col py-3 flex-fill">
+          <div class="h-100 p-1 flex-sm-fill bg-white rounded shadow mb-5">
+            <ul class="nav nav-tabs nav-pills flex-column flex-sm-row text-center bg-light border-0 rounded-nav mb-3"  id="pills-tab" role="tablist">
+              <li class="nav-item flex-sm-fill" role="presentation">
+                <button class="nav-link w-100 active border-0 font-weight-bold flex-fill" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true"><i class="material-icons">pedal_bike</i> </button>
+                <!-- Book a Bike -->
+              </li>
+              <li class="nav-item flex-sm-fill" role="presentation">
+                <button class="nav-link w-100 border-0 font-weight-bold flex-fill" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false"><i class="material-icons">dangerous</i> </button>
+                <!-- Return a Bike -->
+              </li>
+            </ul>
+              <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active px-4 py-1" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                  <h1>All Bikes</h1>
+                  <div class="container-sm">
+                    <div class="overflow-auto dimension2" >
+                      <table class="table table-hover" > 
+                      
+                        <tr>
+                          <th scope="col">Bike ID</th>
+                          <th scope="col">Bike Status</th>
+                          <th scope="col">Location ID</th>
+                        </tr>
+                      
+                      {% for row in data %}
+                      <tr>
+                      {% for d in row %}
+                      <td>{{d}}</td>
+                      {% endfor %}
+                      </tr>
+                      {% endfor %}
+                      </table>
+                    </div>
+                    
+                  </div>
+                </div>
+                <div class="tab-pane fade px-4 py-1" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                  <h1>Broken Bikes</h1>
+                  <div class="container-sm w-100 h-100">
+                    <div class="overflow-auto dimension2" >
+                      <table class="table table-hover" > 
+                      
+                        <tr>
+                          <th scope="col">Bike ID</th>
+                          <th scope="col">Bike Status</th>
+                          <th scope="col">Location ID</th>
+                        </tr>
+                      
+                      {% for row in data1 %}
+                      <tr>
+                      {% for d in row %}
+                      <td>{{d}}</td>
+                      {% endfor %}
+                      </tr>
+                      {% endfor %}
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Enter New Location</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">Enter Bike ID</span>
+                        <input type="text" class="form-control" aria-label="For Eg. 1">
+                      </div>
+                      <div class="input-group">
+                        <span class="input-group-text">Enter New Location</span>
+                        <input type="text" class="form-control" aria-label="For Eg. University of Glasgow">
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal fade" id="statusModal" tabindex="-1" aria-labelledby="statusModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="statusModalLabel">Enter New Location</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">Enter Bike ID</span>
+                        <input type="text" class="form-control" aria-label="For Eg. 1">
+                      </div>
+                      <div class="input-group">
+                        <span class="input-group-text">Enter New Bike Status</span>
+                        <input type="text" class="form-control" aria-label="For Eg. University of Glasgow">
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+  {%endblock%}
