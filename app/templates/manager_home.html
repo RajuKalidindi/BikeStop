@@ -1,84 +1,129 @@
 {% extends "base.html" %} {%block content%}
 <div class="container-fluid">
   <div class="row flex-nowrap">
-      <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-          <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-            <img src="../static/images/profile.jfif" alt="profile-picture" width="120" height="120" class="rounded-circle">
-              <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                  <span class="fs-5 d-none d-sm-inline"><h3>Welcome!</h3></span>
-              </a>
-              
-              <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                <li class="nav-item">
-                  <a href="manager_home" class="nav-link align-middle px-0">
-                    <span class="ms-1 d-none d-sm-inline">Home</span>
-                  </a>
-              </li>
-                  <li>
-                      <a href="manager_login"  class="nav-link px-0 align-middle ">
-                        <span class="ms-1 d-none d-sm-inline">Sign out</span></a>
-                  </li>
-              </ul>
-              <hr>
-          </div>
+    <div class="col-12 col-md-3 col-xl-2 px-sm-2 px-0 bg-dark d-md-block">
+      <div
+        class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100"
+      >
+        <img
+          src="../static/images/profile.jfif"
+          alt="profile-picture"
+          width="120"
+          height="120"
+          class="rounded-circle"
+        />
+        <a
+          href="/"
+          class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+        >
+          <span class="fs-5 d-none d-sm-inline"><h3>Welcome!</h3></span>
+        </a>
+
+        <ul
+          class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
+          id="menu"
+        >
+          <li class="nav-item">
+            <a href="manager_home" class="nav-link align-middle px-0">
+              <span class="ms-1 d-none d-sm-inline">Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="manager_login" class="nav-link px-0 align-middle">
+              <span class="ms-1 d-none d-sm-inline">Sign out</span></a
+            >
+          </li>
+        </ul>
+        <hr />
       </div>
-      <div class="col py-3 flex-fill">
-          <!-- <div class="h-100 p-1 flex-sm-fill bg-white rounded shadow mb-5"> -->
-            <div class="p-1 container h-100">
-                <div class="row row-cols-3 h-100">
-                  <div class="col">
-                    <div class="p-2 flex-sm-fill bg-white rounded shadow">
-                        <div class = "row">
-                            <!-- <span>Monthly Rental Usage Report</span> -->
-                            <img src="../static/images/1.png" alt="profile-picture" width="300" height="300">
-                        </div>
-                    </div>
-                    </div>
-                    <div class="col">
-                    <div class="p-2 flex-sm-fill bg-white rounded shadow">
-                        <div class = "row">
-                            <!-- <span>Monthly User Rents Report</span> -->
-                            <img src="../static/images/2.png" alt="profile-picture" width="300" height="300">
-                        </div>
-                    </div>
-                    </div>
-                    <div class="col">
-                        <div class="p-2 flex-sm-fill bg-white rounded shadow">
-                            <div class = "row">
-                                <!-- <span>Monthly Revenue Report</span> -->
-                                <img src="../static/images/3.png" alt="profile-picture" width="300" height="300">
-                            </div>
-                        </div>
-                        </div>
-                    <div class="col">
-                    <div class="p-2 flex-sm-fill bg-white rounded shadow">
-                        <div class = "row">
-                            <!-- <span>Monthly Routes Report</span> -->
-                            <img src="../static/images/4.png" alt="profile-picture" width="300" height="300">
-                        </div>
-                    </div>
-                    </div>
-                    <div class="col">
-                    <div class="p-2 flex-sm-fill bg-white rounded shadow">
-                        <div class = "row">
-                            <!-- <span>Monthly Ratings Report</span> -->
-                            <img src="../static/images/5.png" alt="profile-picture" width="300" height="300">
-                        </div>
-                    </div>
-                    </div>
-                    <div class="col">
-                    <div class="p-2 flex-sm-fill bg-white rounded shadow">
-                        <div class = "row">
-                            <!-- <span>Monthly Comments Report</span> -->
-                            <img src="../static/images/6.png" alt="profile-picture" width="300" height="300">
-                        </div>
-                    </div>
-                    </div>
-                </div>
+    </div>
+    <div class="col py-3 flex-fill">
+      <!-- <div class="h-100 p-1 flex-sm-fill bg-white rounded shadow mb-5"> -->
+      <div class="p-1 container h-100">
+        <div class="row row-cols-3 h-100">
+          <div class="col">
+            <div class="p-2 flex-sm-fill bg-white rounded shadow">
+              <div class="row">
+                <!-- <span>Monthly Rental Usage Report</span> -->
+                <img
+                  src="{{ url_for('static', filename='images/top_bikes_bar_chart.png') }}"
+                  alt="Bar Chart"
+                  width="300"
+                  height="300"
+                />
               </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="p-2 flex-sm-fill bg-white rounded shadow">
+              <div class="row">
+                <!-- <span>Monthly User Rents Report</span> -->
+                <img
+                  src="{{ url_for('static', filename='images/top_customers_pie_chart.png') }}"
+                  alt="Pie Chart"
+                  width="300"
+                  height="300"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="p-2 flex-sm-fill bg-white rounded shadow">
+              <div class="row">
+                <!-- <span>Monthly Revenue Report</span> -->
+                <img
+                  src="{{ url_for('static', filename='images/rentals_by_hour_line_chart.png') }}"
+                  alt="Pie Chart"
+                  width="300"
+                  height="300"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="p-2 flex-sm-fill bg-white rounded shadow">
+              <div class="row">
+                <!-- <span>Monthly Routes Report</span> -->
+                <img
+                  src="{{ url_for('static', filename='images/routes_heatmap.png') }}"
+                  alt="Route Chart"
+                  width="300"
+                  height="300"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="p-2 flex-sm-fill bg-white rounded shadow">
+              <div class="row">
+                <!-- <span>Monthly Ratings Report</span> -->
+                <img
+                  src="{{ url_for('static', filename='images/rating_bar_chart.png') }}"
+                  alt="Bar Chart"
+                  width="300"
+                  height="300"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="p-2 flex-sm-fill bg-white rounded shadow">
+              <div class="row">
+                <!-- <span>Monthly Comments Report</span> -->
+                <!-- <img src="../static/images/6.png" alt="profile-picture" width="300" height="300"> -->
+                <img
+                  src="{{ url_for('static', filename='images/wordcloud.png') }}"
+                  alt="Word Cloud"
+                  width="300"
+                  height="300"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
   </div>
 </div>
 
-
-  {%endblock%}
+{%endblock%}
