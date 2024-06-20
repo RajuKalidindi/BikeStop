@@ -1,77 +1,185 @@
 {% extends "base.html" %} {%block content%}
+<div id="flash-messages">
+  {% with messages = get_flashed_messages(with_categories=true) %} {% if
+  messages %} {% for category, message in messages %}
+  <div class="alert alert-{{ category }} text-center">{{ message }}</div>
+  {% endfor %} {% endif %} {% endwith %}
+</div>
 <div class="container-fluid">
   <div class="row flex-nowrap">
-      <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-          <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-            <img src="../static/images/profile.jfif" alt="profile-picture" width="120" height="120" class="rounded-circle">
-              <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                  <span class="fs-5 d-none d-sm-inline"><h3>Welcome!</h3></span>
-              </a>
-              
-              <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                <li class="nav-item">
-                  <a href="user_home" class="nav-link align-middle px-0">
-                    <span class="ms-1 d-none d-sm-inline">Home</span>
-                  </a>
-              </li> 
-                  <li>
-                      <a href="ride_history" class="nav-link px-0 align-middle">
-                        <span class="ms-1 d-none d-sm-inline">Ride history</span> </a>
-                  </li>
-                  <li>
-                      <a href="update_profile" class="nav-link px-0 align-middle">
-                        <span class="ms-1 d-none d-sm-inline">Update Profile</span></a>
-                  </li>
-                  <li>
-                      <a href="login"  class="nav-link px-0 align-middle ">
-                        <span class="ms-1 d-none d-sm-inline">Sign out</span></a>
-                  </li>
-              </ul>
-              <hr>
-          </div>
+    <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+      <div
+        class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100"
+      >
+        <img
+          src="../static/images/profile.jfif"
+          alt="profile-picture"
+          width="120"
+          height="120"
+          class="rounded-circle"
+        />
+        <a
+          href="/"
+          class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+        >
+          <span class="fs-5 d-none d-sm-inline"
+            ><h3>Welcome, {{ user }}!</h3></span
+          >
+        </a>
+
+        <ul
+          class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
+          id="menu"
+        >
+          <li class="nav-item">
+            <a href="user_home" class="nav-link align-middle px-0">
+              <span class="ms-1 d-none d-sm-inline">Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="ride_history" class="nav-link px-0 align-middle">
+              <span class="ms-1 d-none d-sm-inline">Ride history</span>
+            </a>
+          </li>
+          <li>
+            <a href="update_profile" class="nav-link px-0 align-middle">
+              <span class="ms-1 d-none d-sm-inline">Update Profile</span></a
+            >
+          </li>
+          <li>
+            <a href="login" class="nav-link px-0 align-middle">
+              <span class="ms-1 d-none d-sm-inline">Sign out</span></a
+            >
+          </li>
+        </ul>
+        <hr />
       </div>
-      <div class="col py-3 flex-fill">
-          <div class="h-100 p-1 flex-sm-fill bg-white rounded shadow mb-5">
-            <h1>Update Profile</h1>
-            <div class="container bootstrap snippets bootdeys">
-                <div class="row">
-                  <div class="col-xs-12 col-sm-9">
-                    <form class="form-horizontal">
-                        <div class="panel panel-default">
-                          <div class="panel-body text-center">
-                           <img src="../static/images/profile.jfif" width="310" height="310" alt="User avatar">
-                          </div>
-                        </div>
-                            <div class="form-group">
-                                <label class="col-lg-3 control-label">New password:</label>
-                              <div class="col-lg-7">
-                                <input class="form-control" type="password" placeholder="password">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label class="col-lg-3 control-label">Re-enter New password:</label>
-                              <div class="col-lg-8">
-                                <input class="form-control" type="password" placeholder="re-enter password">
-                              </div>
-                            </div>
-                            <button class="btn btn-success" type="button" id="submitButton">Update Password</button>
-                            <div class="form-group">
-                              <label class="col-lg-3 control-label">New Card Details:</label>
-                              <div class="col-lg-8">
-                                <input class="form-control" type="text" placeholder="Enter your card number">
-                                <input class="form-control" type="text" placeholder="Expiry-MM/YY" maxlength="5">
-                                <input class="form-control" type="password" placeholder="CVV" maxlength="3">
-                              </div>
-                            </div>
-                            <button class="btn btn-success" type="button" id="submitButton">Update Card Number</button>
-                    </form>
+    </div>
+    <div class="col py-3 flex-fill">
+      <div class="h-100 p-1 flex-sm-fill bg-white rounded shadow mb-5">
+        <h1 class="ml-2">Update Profile</h1>
+        <div class="container bootstrap snippets bootdeys">
+          <div class="row">
+            <div class="col-xs-12 col-sm-9">
+              <form class="form-horizontal">
+                <div class="panel panel-default">
+                  <div class="panel-body text-center">
+                    <img
+                      src="../static/images/profile.jfif"
+                      width="310"
+                      height="310"
+                      alt="User avatar"
+                    />
                   </div>
                 </div>
-                </div>
+                <form
+                  style="display: none"
+                  action="/update_password"
+                  method="post"
+                ></form>
+                <form
+                  class="form-horizontal"
+                  method="POST"
+                  action="/update_card"
+                >
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label mt-4"
+                      >New Card Details:</label
+                    >
+                    <div class="col-lg-8">
+                      <input
+                        class="form-control"
+                        type="text"
+                        pattern="\d{1,16}"
+                        maxlength="16"
+                        name="card_number"
+                        placeholder="Enter your card number"
+                      />
+                      <div class="row mt-2">
+                        <div class="col-md-6">
+                          <input
+                            class="form-control"
+                            type="text"
+                            name="expiry_date"
+                            placeholder="Expiry-MM/YY"
+                            maxlength="5"
+                            minlength="5"
+                          />
+                        </div>
+                        <div class="col-md-6">
+                          <input
+                            class="form-control"
+                            type="password"
+                            name="cvv"
+                            placeholder="CVV"
+                            maxlength="3"
+                            minlength="3"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    class="btn btn-success mt-2"
+                    type="submit"
+                    id="submitCardButton"
+                  >
+                    Update Card Number
+                  </button>
+                </form>
+
+                <form
+                  class="form-horizontal"
+                  method="POST"
+                  action="/update_password"
+                >
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label mt-4"
+                      >New Password:</label
+                    >
+                    <div class="col-lg-8">
+                      <input
+                        class="form-control"
+                        type="password"
+                        name="new_password"
+                        placeholder="Enter new password"
+                      />
+                    </div>
+                    <label class="col-lg-3 control-label mt-2"
+                      >Confirm Password:</label
+                    >
+                    <div class="col-lg-8">
+                      <input
+                        class="form-control"
+                        type="password"
+                        name="confirm_password"
+                        placeholder="Enter new password"
+                      />
+                    </div>
+                  </div>
+                  <button
+                    class="btn btn-success mt-2"
+                    type="submit"
+                    id="submitPasswordButton"
+                  >
+                    Update Password
+                  </button>
+                </form>
+              </form>
+            </div>
           </div>
+        </div>
       </div>
+    </div>
   </div>
 </div>
 
+<script>
+  // This script will make the flash messages disappear after 3 seconds
+  setTimeout(function () {
+    const flashMessages = document.getElementById("flash-messages");
+    if (flashMessages) flashMessages.style.display = "none";
+  }, 3000);
+</script>
 
-  {%endblock%}
+{%endblock%}

@@ -1,43 +1,40 @@
-
 .icon-flipped {
-    -o-transform: scaleX(-1);
-    -moz-transform: scaleX(-1);
-    -webkit-transform: scaleX(-1);
-    -ms-transform: scaleX(-1);
-    transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -moz-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
+  transform: scaleX(-1);
 }
 
-.background{
-    color:aqua;
+.background {
+  color: aqua;
 }
 
-.dimensions{
-    width: fill;
-    height: 310px;
+.dimensions {
+  width: fill;
+  height: 475px;
 }
 
-.dimension{
-    width:fill;
-    height: 650px;
+.dimension {
+  width: fill;
+  height: 700px;
 }
 
-.dimension2{
-    width:fill;
-    height: 550px;
+.dimension2 {
+  width: fill;
+  height: 550px;
 }
 
 fieldset {
-    border: 0;
-    background: #222;
-    width: 5em;
-    border-radius: 1px;
-    padding: 1em 1.5em 0.9em;
-    margin: 1em auto;
-  }
-
-
+  border: 0;
+  background: #222;
+  width: 5em;
+  border-radius: 1px;
+  padding: 1em 1.5em 0.9em;
+  margin: 1em auto;
+}
 
 .align {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }

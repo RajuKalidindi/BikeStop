@@ -15,16 +15,16 @@ def generate_bike_usage_chart(bike_usage, path):
     plt.figure(figsize=(10, 8))
     plt.bar(top_bikes.index, top_bikes)
     plt.title('Top 10 Most Used Bikes')
-    plt.xlabel('Bike ID')
+    plt.xlabel('Bike No')
     plt.ylabel('Usage Count')
     plt.savefig(path)
     plt.close()
 
-def generate_customer_usage_pie_chart(customer_usage, path):
+def generate_customer_usage_pie_chart(customer_usage, customer_names, path):
     customer_counts = pd.Series(customer_usage).value_counts()
     top_customers = customer_counts[:5]
-    labels = [f'Customer {id}: {freq} rides' for id, freq in zip(top_customers.index, top_customers)]
-    plt.figure(figsize=(10, 8))
+    labels = [f'{customer_names[id]}: {freq} rides' for id, freq in zip(top_customers.index, top_customers)]
+    plt.figure(figsize=(8, 6))
     plt.pie(top_customers, labels=labels, autopct='%1.1f%%')
     plt.title('Top 5 Active Customers')
     plt.savefig(path)
@@ -41,12 +41,18 @@ def generate_line_chart(start_times, path):
     plt.savefig(path)
     plt.close()
 
-def generate_heatmap(locations, path):
+def generate_heatmap(locations, location_names, path):
     df = pd.DataFrame(locations, columns=['Start', 'End'])
+    df['Start'] = df['Start'].map(location_names)
+    df['End'] = df['End'].map(location_names)
+    df.sort_values(by=['Start', 'End'], inplace=True)
     matrix = pd.crosstab(df['Start'], df['End'])
-    plt.figure(figsize=(10, 8))
+    plt.figure(figsize=(15, 12))
     sns.heatmap(matrix, cmap='viridis')
     plt.title('Most Travelled Routes')
+    plt.xticks(rotation=90)
+    plt.yticks(rotation=0)
+    plt.tight_layout() 
     plt.savefig(path)
     plt.close()
 

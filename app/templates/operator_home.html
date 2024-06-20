@@ -1,11 +1,22 @@
 {% extends "base.html" %} {%block content%}
+<div id="flash-messages">
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="alert alert-success text-center">
+        {% for message in messages %}
+          {{ message }}
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+</div>
 <div class="container-fluid">
   <div class="row flex-nowrap">
       <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
           <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
             <img src="../static/images/profile.jfif" alt="profile-picture" width="120" height="120" class="rounded-circle">
               <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                  <span class="fs-5 d-none d-sm-inline"><h3>Welcome!</h3></span>
+                  <span class="fs-5 d-none d-sm-inline"><h3>Welcome, Operator!</h3></span>
               </a>
               
               <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
@@ -47,15 +58,16 @@
                   <h1>All Bikes</h1>
                   <div class="container-sm">
                     <div class="overflow-auto dimension2" >
-                      <table class="table table-hover" > 
+                      <table class="table table-hover text-center" > 
                       
                         <tr>
-                          <th scope="col">Bike ID</th>
+                          <th scope="col">Bike No</th>
                           <th scope="col">Bike Status</th>
-                          <th scope="col">Location ID</th>
+                          <th scope="col">Location</th>
+                          <th scope="col">Currently In Use</th>
                         </tr>
                       
-                      {% for row in data %}
+                      {% for row in bikeData %}
                       <tr>
                       {% for d in row %}
                       <td>{{d}}</td>
@@ -71,15 +83,15 @@
                   <h1>Broken Bikes</h1>
                   <div class="container-sm w-100 h-100">
                     <div class="overflow-auto dimension2" >
-                      <table class="table table-hover" > 
+                      <table class="table table-hover text-center" > 
                       
                         <tr>
-                          <th scope="col">Bike ID</th>
+                          <th scope="col">Bike No</th>
                           <th scope="col">Bike Status</th>
-                          <th scope="col">Location ID</th>
+                          <th scope="col">Location</th>
                         </tr>
                       
-                      {% for row in data1 %}
+                      {% for row in brokenData %}
                       <tr>
                       {% for d in row %}
                       <td>{{d}}</td>
@@ -95,23 +107,25 @@
                 <div class="modal-dialog modal-dialog-centered">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Enter New Location</h5>
+                      <h5 class="modal-title" id="exampleModalLabel">Update Bike Location</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                      <div class="input-group mb-3">
-                        <span class="input-group-text">Enter Bike ID</span>
-                        <input type="text" class="form-control" aria-label="For Eg. 1">
+                    <form action="/update_bike_location" method="post">
+                      <div class="modal-body">
+                          <div class="input-group mb-3">
+                              <span class="input-group-text">Enter Bike No</span>
+                              <input type="text" class="form-control" name="bike_no" aria-label="For Eg. 1" placeholder="For Eg. 1">
+                          </div>
+                          <div class="input-group">
+                              <span class="input-group-text">Enter New Location</span>
+                              <input type="text" class="form-control" name="new_location" aria-label="For Eg. University of Glasgow" placeholder="For Eg. University of Glasgow">
+                          </div>
                       </div>
-                      <div class="input-group">
-                        <span class="input-group-text">Enter New Location</span>
-                        <input type="text" class="form-control" aria-label="For Eg. University of Glasgow">
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary">Save changes</button>
                       </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -119,23 +133,26 @@
                 <div class="modal-dialog modal-dialog-centered">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="statusModalLabel">Enter New Location</h5>
+                      <h5 class="modal-title" id="statusModalLabel">Update Bike Status</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                      <div class="input-group mb-3">
-                        <span class="input-group-text">Enter Bike ID</span>
-                        <input type="text" class="form-control" aria-label="For Eg. 1">
+                    <form action="/update_bike_status" method="post">
+                      <div class="modal-body">
+                        <div class="input-group mb-3">
+                          <span class="input-group-text">Enter Bike No</span>
+                          <input type="text" class="form-control" name="bike_no" aria-label="For Eg. 1" placeholder="For Eg. 1">
+                        </div>
+                        <div class="input-group">
+                          <span class="input-group-text">Enter New Bike Status</span>
+                          <input type="text" class="form-control" name="new_status" aria-label="For Eg. good" placeholder="For Eg. good">
+                        </div>
                       </div>
-                      <div class="input-group">
-                        <span class="input-group-text">Enter New Bike Status</span>
-                        <input type="text" class="form-control" aria-label="For Eg. University of Glasgow">
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
                       </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
+                    </form>
+                    
                   </div>
                 </div>
               </div>
@@ -144,5 +161,12 @@
   </div>
 </div>
 
+<script>
+  // This script will make the flash messages disappear after 3 seconds
+  setTimeout(function() {
+    const flashMessages = document.getElementById('flash-messages');
+    if (flashMessages) flashMessages.style.display = 'none';
+  }, 3000);
+</script>
 
   {%endblock%}
