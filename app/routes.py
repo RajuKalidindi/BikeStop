@@ -119,7 +119,6 @@ def start_ride():
     cursor.execute("UPDATE customer SET rentalStatus = 1 WHERE customerID = %s", (customer_id,))
     cursor.execute("UPDATE bike SET rentalStatus = 1 WHERE bikeID = %s", (bike_id,))
     cursor.execute("INSERT INTO customeractivity (customerID, bikeID, startTime, startLocation, paid) VALUES (%s, %s, NOW(), %s, 0)", (customer_id, bike_id, start_location_id))
-    print("customer activity added")
     mysql.connection.commit()
     cursor.close()
     return jsonify({'status': 'success'})
@@ -131,9 +130,7 @@ def end_ride():
     cursor.execute("SELECT locationID FROM location WHERE locationName = %s", (endLocation,))
     end_location_id = cursor.fetchone()[0]
     bike_id = request.json['bikeId']
-    print("bike id:",bike_id)
     customer_id = session['customerID']
-    print("customer id:",customer_id)
     cursor.execute("UPDATE bike SET rentalStatus = 0, locationID = %s WHERE bikeID = %s", (end_location_id, bike_id))
     cursor.execute("UPDATE customer SET rentalStatus = 0 WHERE customerID = %s", (customer_id,))
     cursor.execute("""
@@ -230,7 +227,6 @@ def update_card():
     expiry_date = request.form['expiry_date']
     cvv = request.form['cvv']
     customer_id = session['customerID']
-    print(new_card_number, expiry_date, cvv, customer_id)
     if new_card_number and expiry_date and cvv:
         hashed_card_number = generate_password_hash(new_card_number)
         hashed_expiry_date = generate_password_hash(expiry_date)
@@ -311,9 +307,7 @@ def update_bike_location():
 @app.route('/update_bike_status', methods=['POST'])
 def update_bike_status():
     bike_no = request.form['bike_no']
-    print(bike_no)
     new_status = request.form['new_status']
-    print(new_status)
     cursor = mysql.connection.cursor()
     cursor.execute("UPDATE bike SET bikeStatus = %s WHERE bikeID = %s", (new_status, bike_no,))
     cursor.execute("INSERT INTO operatoractivity (bikeID, actionName, action_time) VALUES (%s, 'repair', NOW())", (bike_no,))
