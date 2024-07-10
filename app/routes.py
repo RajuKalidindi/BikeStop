@@ -6,6 +6,9 @@ from app.utils import (
     generate_bike_usage_chart, generate_customer_usage_pie_chart, generate_line_chart
 )
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 @app.route('/')
 def index():
@@ -34,7 +37,7 @@ def manager_login():
     if request.method == 'POST':
         get_flashed_messages()
         manager_password = request.form['manager_password']
-        secret_key = 'manager_password'
+        secret_key = os.getenv('MANAGER_PASSWORD')
 
         if manager_password == secret_key:
             return redirect(url_for('manager_home'))
@@ -48,7 +51,7 @@ def operator_login():
     if request.method == 'POST':
         get_flashed_messages()
         operator_password = request.form['operator_password']
-        secret_key = 'operator_password'
+        secret_key = os.getenv('OPERATOR_PASSWORD')
 
         if operator_password == secret_key:
             return redirect(url_for('operator_home'))

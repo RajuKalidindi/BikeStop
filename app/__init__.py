@@ -1,8 +1,12 @@
 from flask import Flask
 from flask_mysqldb import MySQL
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = '03SCJq89eWFjHZudC88z4HveX5ivc7A6'
+app.secret_key = os.getenv('SECRET_KEY')
 
 # Configuration
 app.config.from_object('app.config.Config')

@@ -64,5 +64,9 @@ coverage.xml
 .pytest_cache/
 .coveragerc
 
+# Environment variables
+.env 
+
 # Other files
 OGreq.txt
+.DS_Store
